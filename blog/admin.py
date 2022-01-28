@@ -1,3 +1,9 @@
 from django.contrib import admin
+from blog.models import Post
 
-# Register your models here.
+
+class PostModelAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'date_created']
+
+
+admin.site.register(Post, PostModelAdmin)
