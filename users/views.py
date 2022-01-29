@@ -11,9 +11,13 @@ def signup(request):
             form.save()
             # instance.author = request.user
             # instance.save()
-            return redirect('home')
+            return redirect('login')
     else:
         form = SignUpForm()
 
     context = {'form': form}
     return render(request, 'users/signup.html', context=context)
+
+
+def profile(request):
+    return render(request, 'users/profile.html')

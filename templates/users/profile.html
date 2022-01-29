@@ -1,0 +1,62 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-5 pt-3">
+            <div class="col-md-6 offset-md-3">
+                <div class="card my-3 shadow">
+                    <div class="card-body">
+                        <span class="h4">Profile page</span>
+                        <span>
+                            <button type="button" class="btn btn-info btn-sm float-right" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                            Edit Profile
+                        </button>
+                        </span>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ user.profilemodel.image.url }}"
+                                     class="rounded-circle z-depth-2"
+                                     alt="profile-image" data-holder-rendered="true"
+                                     width="150" height="150">
+                            </div>
+                            <div class="col-md-8">
+                                <h6>Name: {{ user.last_name|capfirst }} {{ user.first_name|capfirst }}</h6>
+                                <h6>Email: {{ user.email }} </h6>
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit profile information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
