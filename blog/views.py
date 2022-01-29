@@ -21,3 +21,11 @@ def home(request):
     }
 
     return render(request, 'blog/index.html', context=context)
+
+
+def post_detail(request, id):
+    post = Post.objects.get(pk=id)
+    context = {
+        'post': post
+    }
+    return render(request, 'blog/post_detail.html', context)

@@ -23,8 +23,10 @@ def signup(request):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST or None, instance=request.user)
-        p_form = ProfileUpdateForm(
-            request.POST or None, request.FILES or None, instance=request.user.profilemodel)
+        p_form = ProfileUpdateForm(request.POST or None,
+                                   request.FILES or None,
+                                   instance=request.user.profilemodel)
+
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
