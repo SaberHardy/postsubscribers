@@ -13,7 +13,11 @@
                             <form method="post">
                                 {% csrf_token %}
                                 {{ form|crispy }}
-                                <input class="btn btn-primary btn-sm" type="submit" value="Save">
+                                <a href="{% url 'post_detail' post.id %}"
+                                   class="btn btn-primary btn-sm float-right ml-2">
+                                    Cancel</a>
+                                <input class="btn btn-success btn-sm float-right" type="submit" value="Save">
+
                             </form>
 
                         </div>

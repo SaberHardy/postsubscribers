@@ -45,3 +45,15 @@ def post_edit(request, pk):
         'form': form
     }
     return render(request, 'blog/post_edit.html', context)
+
+
+def delete_post(request, pk):
+    post = Post.objects.get(id=pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect('home')
+
+    context = {
+        'post': post
+    }
+    return render(request, 'blog/post_detail.html', context=context)

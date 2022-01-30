@@ -30,11 +30,25 @@
 
                                 <div class="col-md-8">
                                     <small>{{ post.date_created }}, by: {{ post.author }}</small>
-                                    <hr>
+
+                                    {% if post.author == request.user %}
+                                        <span><a href="{% url 'delete_post' post.id %}"
+                                                 class="btn btn-danger btn-sm float-right">Delete</a>
+                                    </span>
+                                        <span>
+                                        <a href="{% url 'post_edit' post.id %}"
+                                           class="btn btn-primary mx-2 btn-sm float-right">
+                                            Edit
+                                        </a>
+                                    </span>
+
+                                    {% endif %}
+                                <hr>
                                     <a class="h3" href="{% url 'post_detail' post.id %}">{{ post.title|capfirst }}</a>
                                     <p class="text-justify my-3">
                                         {{ post.content }}
                                     </p>
+
                                 </div>
 
                             </div>
