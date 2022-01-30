@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from blog.models import Post
-from .forms import PostModelForm, PostUpdateForm
+from .forms import PostModelForm, PostUpdateForm, CommentForm
 
 
 def home(request):
@@ -25,8 +25,19 @@ def home(request):
 
 def post_detail(request, pk):
     post = Post.objects.get(id=pk)
+    if request.method == 'POST':
+        c_form = CommentForm(request.POST)
+        if c_form.is_valid():
+            instance = c_form.save(commit=False)
+            instance.user = request.user
+            instance.post = post
+            instance.save()
+            return redirect('post_detail', pk=post.id)
+    else:
+        c_form = CommentForm()
     context = {
-        'post': post
+        'post': post,
+        'c_form': c_form,
     }
     return render(request, 'blog/post_detail.html', context)
 

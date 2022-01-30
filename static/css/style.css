@@ -3,5 +3,8 @@
     background-position: center;
     background-size: cover;
     height: 100vh;
+}
 
+a {
+    text-decoration: none;
 }

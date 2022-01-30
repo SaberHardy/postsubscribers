@@ -1,6 +1,6 @@
 from django import forms
 
-from blog.models import Post
+from blog.models import Post, Comment
 
 
 class PostModelForm(forms.ModelForm):
@@ -18,3 +18,15 @@ class PostUpdateForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content']
 
+
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(label='',
+                                      widget=forms.TextInput(
+                                          attrs={
+                                              'placeholder': 'Add your comment here ...',
+                                              'class': 'mt-3'
+                                          }))
+
+    class Meta:
+        model = Comment
+        fields = ('content',)
