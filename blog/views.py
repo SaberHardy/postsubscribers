@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 
 from blog.models import Post
 from .forms import PostModelForm, PostUpdateForm, CommentForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     posts = Post.objects.all()
     if request.method == "POST":
@@ -23,6 +25,7 @@ def home(request):
     return render(request, 'blog/index.html', context=context)
 
 
+@login_required
 def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -42,6 +45,7 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', context)
 
 
+@login_required
 def post_edit(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == "POST":
@@ -58,6 +62,7 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', context)
 
 
+@login_required
 def delete_post(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == "POST":
